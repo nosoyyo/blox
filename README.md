@@ -1,4 +1,4 @@
 # blox
 modernized personal task managing tool.
 
-# working in progress.
+# work in progress
