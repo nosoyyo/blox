@@ -120,38 +120,43 @@ class bloxDB():
 			# getBlock('active') returns 
 			# getBlock by id returns the block itself
 			# v0.3 update: getBlock() now returns block instance when possible
-			# 0.0.4: shorten codes
+			# 0.0.4: shorten codes, following EYTP princple
 		'''
 		def getKeyList(self):
 			kl = [key for key in self.index.keys() if key.endswith('0')]
 			return kl
 
 		def getLatestBlock(self):
-			kl = getKeyList()
+			kl = getKeyList(self)
 			kl.sort()
 			_id = kl[-1]
 			instance = self.getInstance(_id)
 			return instance
 
 		if arg in [None,'latest','last']:
-			instance = self.getLatestBlock()
+			instance = getLatestBlock(self)
 			return instance
 
 		elif arg in ['active', 'Active']:
-			instance = self.getLatestBlock()
+			instance = getLatestBlock(self)
 			if instance.state == 'active':
 				return instance
 			else:
 				print('no active block')
 
 		elif arg in ['All','all']:
-			kl = self.getBlockIdList()
+			kl = getKeyList(self)
 			return kl
 
 		# accepts decimal id here
 		elif parse(arg)[0].endswith('0'):
 			instance = self.getInstance(parse(arg)[0])
 			return instance
+
+	def getTask():
+		'''
+		'''
+		return
 
 class Block():
 
@@ -172,9 +177,9 @@ class Block():
 
 	def updateIndex(self):
 		'''
-		write current block into bloxCol.blocks
+		write current block into 
 		'''
-		updateIndex(self)
+		
 		return True
 
 	def close(self):
@@ -187,9 +192,9 @@ class Block():
 
 	def storeInstance(self):
 		'''
-			store this instance into bloxCol
+			store this instance into
 		'''
-		storeInstanceInDB(self)
+		
 		return True
 
 	def sync(self):
